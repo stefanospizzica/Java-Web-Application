@@ -39,7 +39,7 @@ public class LogoutServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect("loginjquery.jsp");
+		response.sendRedirect("login.jsp");
 
 	}
 

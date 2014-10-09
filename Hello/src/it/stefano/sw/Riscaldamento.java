@@ -53,7 +53,7 @@ public class Riscaldamento extends HttpServlet {
 		
 		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
 		if (nome == null) {
-			response.sendRedirect("loginjquery.jsp");
+			response.sendRedirect("login.jsp");
 		}
 			
 		log("DOGET START: Setto gli attributi di inizializzazione interrogando il database");

@@ -20,7 +20,7 @@
 <%
 	String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
 	if (nome == null) {
-		response.sendRedirect("loginjquery.jsp");
+		response.sendRedirect("login.jsp");
 	}
 %>
 
