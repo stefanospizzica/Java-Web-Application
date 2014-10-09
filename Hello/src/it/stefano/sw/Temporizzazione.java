@@ -1,4 +1,4 @@
-package it.ericsson.servlets;
+package it.stefano.sw;
 
 public class Temporizzazione {
 	private String start1;
