@@ -20,7 +20,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Riscaldamento")
 public class Riscaldamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//TODO Meglio rendere Thread Safe e togliere qui un po' di variabili mettendole nei metodi
 	private Temporizzazione Tlunedi =   			new Temporizzazione("", "", "", "", "", "", "", "");
 	private Temporizzazione Tmartedi=   			new Temporizzazione("", "", "", "", "", "", "", "");
 	private Temporizzazione Tmercoledi= 			new Temporizzazione("", "", "", "", "", "", "", "");
@@ -48,6 +47,7 @@ public class Riscaldamento extends HttpServlet {
 		float temperaturamassima=0f;
 		float temperaturasicurezza=0f;
 		float isteresi=0;
+		String ultimamodifica=null;
 		
 		HttpSession session=request.getSession(true);
 		
@@ -69,6 +69,7 @@ public class Riscaldamento extends HttpServlet {
 				temperaturamassima 		= Float.parseFloat(rs.getString("Tmax"));		
 				temperaturasicurezza 	= Float.parseFloat(rs.getString("Tsafe"));		
 				isteresi 				= Float.parseFloat(rs.getString("Hyst"));
+				ultimamodifica			= rs.getString("Variazione");
 				if("LU".equals(giorno)){
 					Tlunedi.SetStart1(rs.getString("Start1"));
 					Tlunedi.SetEnd1(rs.getString("End1"));
@@ -164,6 +165,7 @@ public class Riscaldamento extends HttpServlet {
 		session.setAttribute("TEMPERATURA_SICUREZZA", temperaturasicurezza);		
 		session.setAttribute("ISTERESI", isteresi);
 		session.setAttribute("STATOCRONOTERMOSTATO", statocronotermostato);
+		session.setAttribute("ULTIMAMODIFICA", ultimamodifica);
 		
 		if(null == session.getAttribute("GIORNO")){
 			session.setAttribute("GIORNO", giorno);

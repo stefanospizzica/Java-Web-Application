@@ -217,7 +217,14 @@
 		</div>
 
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
-			<a href="principale.jsp" data-role="button" data-icon="home">Home</a>
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-a" align="left">
+					<a href="principale.jsp" data-role="button" data-icon="home">Home</a>
+				</div>
+				<div class="ui-block-b" align="left">		
+					<%=session.getAttribute("ULTIMAMODIFICA")%><i> Ultima modifica</i>
+				</div>
+			</fieldset>
 		</div>
 
 	</div>
