@@ -53,7 +53,7 @@ public class Riscaldamento extends HttpServlet {
 		
 		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
 		if (nome == null) {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("/admin/login.jsp");
 		}
 			
 		log("DOGET START: Setto gli attributi di inizializzazione interrogando il database");
@@ -175,7 +175,7 @@ public class Riscaldamento extends HttpServlet {
 		}
 		
 		log("DOGET END: Invoco la pagina riscaldamento.jsp per il giorno " + giorno);
-		request.getRequestDispatcher("riscaldamento.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class Riscaldamento extends HttpServlet {
 			} 
 			
 			log("DOPOST END: ReInvoco la pagina riscaldamento.jsp");
-			request.getRequestDispatcher("riscaldamento.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 		}
 				
 		if("conferma".equals(azione)) {
@@ -349,7 +349,7 @@ public class Riscaldamento extends HttpServlet {
 				catch (SQLException e) {}
 			}
 			log("DOPOST END: ReInvoco la pagina riscaldamento.jsp");
-			request.getRequestDispatcher("riscaldamento.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 		}
 	}
 

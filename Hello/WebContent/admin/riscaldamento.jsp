@@ -8,10 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width/2, initial-scale=1">
 	
-	<link rel="stylesheet"	href="../css/jquery.mobile-1.4.4.css">
-	<link rel="stylesheet"	href="../css/theme-classic.css" />
-	<script src="../jquery-1.11.1.js"></script>
-	<script	src="../jquery.mobile-1.4.4.js"></script>
+	<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/jquery.mobile-1.4.4.css">
+	<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/theme-classic.css" />
+	<script src="${pageContext.request.contextPath}/jquery-1.11.1.js"></script>
+	<script	src="${pageContext.request.contextPath}/jquery.mobile-1.4.4.js"></script>
 
 	<%
 		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
@@ -191,7 +191,7 @@
 							vsafetemp =        $('#safe-temp').val();
 							vhysttemp =        $('#hyst-temp').val();
 							giorno_ = 		   "<%=session.getAttribute("GIORNO")%>";
-							$.post("Riscaldamento",{azione:"conferma",
+							$.post("${pageContext.request.contextPath}/Riscaldamento",{azione:"conferma",
 													ct:vcronotermostato,
 													lt:vlowtemp,
 													ht:vhitemp,
@@ -220,7 +220,7 @@
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<fieldset class="ui-grid-a">
 				<div class="ui-block-a" align="left">
-					<a href="principale.jsp" data-role="button" data-icon="home">Home</a>
+					<a href="${pageContext.request.contextPath}/admin/principale.jsp" data-role="button" data-icon="home">Home</a>
 				</div>
 				<div class="ui-block-b" align="left">		
 					<%=session.getAttribute("ULTIMAMODIFICA")%><i> Ultima modifica</i>

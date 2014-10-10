@@ -36,7 +36,7 @@ public class AuthServlet extends HttpServlet {
 
 		HttpSession session=request.getSession(true);			
 		session.setAttribute("CURRENT_LOGGED_USER", null);
-
+		log("Autenticazione in progress...");	
 		if ("pippo".equals(username) && "pluto".equals(password)) {
 
 			session.setAttribute("CURRENT_LOGGED_USER", username.toUpperCase());

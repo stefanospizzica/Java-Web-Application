@@ -7,10 +7,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width/2, initial-scale=1">
 
-	<link rel="stylesheet"	href="../css/jquery.mobile-1.4.4.css">
-	<link rel="stylesheet"	href="../css/theme-classic.css" />
-	<script src="../jquery-1.11.1.js"></script>
-	<script	src="../jquery.mobile-1.4.4.js"></script>
+	<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/jquery.mobile-1.4.4.css">
+	<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/theme-classic.css" />
+	<script src="${pageContext.request.contextPath}/jquery-1.11.1.js"></script>
+	<script	src="${pageContext.request.contextPath}/jquery.mobile-1.4.4.js"></script>
 
 	<title>Pagina principale</title>
 </head>
@@ -32,16 +32,13 @@
 		<div data-role="main" class="ui-content ui-body-b">
 
 			<ul data-role="listview" data-inset="true">
-				<li><a href="Riscaldamento"> <img
-						src="assets/img/calorifero.jpg" width="80" height="80">
+				<li><a href="${pageContext.request.contextPath}/Riscaldamento"> <img src="${pageContext.request.contextPath}/assets/img/calorifero.jpg" width="80" height="80">
 						<h2>Climatizzazione</h2>
 						<p>Gestione caloriferi e caldaia</p></a></li>
-				<li><a href=""> <img src="assets/img/contatore.jpg"
-						width="80" height="80">
+				<li><a href=""> <img src="${pageContext.request.contextPath}/assets/img/contatore.jpg" width="80" height="80">
 						<h2>Energia</h2>
 						<p>Verifica consumi di corrente</p></a></li>
-				<li><a href=""> <img src="assets/img/sicurezza.jpg"
-						width="80" height="80">
+				<li><a href=""> <img src="${pageContext.request.contextPath}/assets/img/sicurezza.jpg"	width="80" height="80">
 						<h2>Sicurezza</h2>
 						<p>Visualizzazione telecamera</p></a></li>
 			</ul>
@@ -50,12 +47,11 @@
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<div class="ui-block-a">
 				<h4>
-					Utente collegato:
-					<%=nome%>
+					Utente collegato: <%=nome%>
 				</h4>
 			</div>
 			<div class="ui-block-b" align="right">
-				<a href="LogoutServlet" data-role="button" data-icon="delete">Termina</a>
+				<a href="${pageContext.request.contextPath}/LogoutServlet" data-role="button" data-icon="delete">Termina</a>
 			</div>
 		</div>
 
