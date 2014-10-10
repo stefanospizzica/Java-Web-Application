@@ -7,10 +7,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width/2, initial-scale=1">
-	<link rel="stylesheet"	href="css/jquery.mobile-1.4.4.css">
-	<link rel="stylesheet"	href="css/theme-classic.css" />
-	<script src="jquery-1.11.1.js"></script>
-	<script	src="jquery.mobile-1.4.4.js"></script>
+	
+	<link rel="stylesheet"	href="../css/jquery.mobile-1.4.4.css">
+	<link rel="stylesheet"	href="../css/theme-classic.css" />
+	<script src="../jquery-1.11.1.js"></script>
+	<script	src="../jquery.mobile-1.4.4.js"></script>
 
 	<%
 		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");

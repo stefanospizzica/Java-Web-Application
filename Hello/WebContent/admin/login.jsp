@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -7,10 +6,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width/2, initial-scale=1">
 
-	<link rel="stylesheet"	href="css/jquery.mobile-1.4.4.css">
-	<link rel="stylesheet"	href="css/theme-classic.css" />
-	<script src="jquery-1.11.1.js"></script>
-	<script	src="jquery.mobile-1.4.4.js"></script>
+	<link rel="stylesheet"	href="../css/jquery.mobile-1.4.4.css">
+	<link rel="stylesheet"	href="../css/theme-classic.css" />
+	<script src="../jquery-1.11.1.js"></script>
+	<script	src="../jquery.mobile-1.4.4.js"></script>
 
 	<title>Autenticazione</title>
 </head>
@@ -28,7 +27,7 @@
 
 		<div data-role="main" class="ui-content ui-body-b">
 			<div align="center">
-				<img align="middle" src="assets/img/domotica.jpg" width="300" height="180"
+				<img align="middle" src="../assets/img/domotica.jpg" width="300" height="180"
 					alt="domotica" />
 			</div>
 			<%
@@ -41,22 +40,16 @@
 				}
 			%>
 
-			<form name="autenticazione" method="POST" action="AuthServlet"
-				id="loginform">
-				Utente <br> <input type="text" name="fld_username"
-					placeholder="Inserire codice utente" data-theme="b"
+			<form name="autenticazione" method="POST" action="AuthServlet"	id="loginform">
+				Utente <br> <input type="text" name="fld_username"	placeholder="Inserire codice utente" data-theme="b"
 					value="<%=(user == null) ? "" : user%>" required /><br>
-				Codice di accesso <br> <input type="password"
-					name="fld_password" placeholder="Inserire codice di accesso"
-					data-theme="b" required /><br>
+				Codice di accesso <br> <input type="password" name="fld_password" placeholder="Inserire codice di accesso" data-theme="b" required /><br>
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a" align="center">
-						<input type="submit" value="Autenticati" data-inline=true
-							data-icon="check" data-theme="b">
+						<input type="submit" value="Autenticati" data-inline=true data-icon="check" data-theme="b">
 					</div>
 					<div class="ui-block-b" align="center">
-						<a href="#" id="Cancella" data-role="button" data-inline=true
-							data-icon="delete" data-theme="a">Cancella</a>
+						<a href="#" id="Cancella" data-role="button" data-inline=true data-icon="delete" data-theme="a">Cancella</a>
 					</div>
 				</fieldset>
 			</form>

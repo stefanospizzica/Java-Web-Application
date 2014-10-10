@@ -40,12 +40,12 @@ public class AuthServlet extends HttpServlet {
 		if ("pippo".equals(username) && "pluto".equals(password)) {
 
 			session.setAttribute("CURRENT_LOGGED_USER", username.toUpperCase());
-			RequestDispatcher rd = request.getRequestDispatcher("/principale.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/principale.jsp");
 			rd.forward(request, response);
 			return;
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/loginjquery.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/login.jsp");
 		String error = "Attenzione username o password non validi!";
 		session.setAttribute("LOGIN_ERROR", error);
 		session.setAttribute("CURR_USER_NAME", username);
