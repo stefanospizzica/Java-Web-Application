@@ -51,11 +51,6 @@ public class Riscaldamento extends HttpServlet {
 		
 		HttpSession session=request.getSession(true);
 		
-		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
-		if (nome == null) {
-			response.sendRedirect("/admin/login.jsp");
-		}
-			
 		log("DOGET START: Setto gli attributi di inizializzazione interrogando il database");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

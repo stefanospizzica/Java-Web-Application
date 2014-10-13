@@ -1,6 +1,5 @@
 <%@ page import="it.stefano.sw.Temporizzazione"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -12,13 +11,6 @@
 	<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/theme-classic.css" />
 	<script src="${pageContext.request.contextPath}/jquery-1.11.1.js"></script>
 	<script	src="${pageContext.request.contextPath}/jquery.mobile-1.4.4.js"></script>
-
-	<%
-		String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
-		if (nome == null) {
-			response.sendRedirect("loginjquery.jsp");		
-		}
-	%>
 
 	<title>Gestione riscaldamento</title>
 </head>
@@ -232,30 +224,3 @@
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

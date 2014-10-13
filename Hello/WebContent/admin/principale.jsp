@@ -15,13 +15,6 @@
 	<title>Pagina principale</title>
 </head>
 
-<%
-	String nome = (String) session.getAttribute("CURRENT_LOGGED_USER");
-	if (nome == null) {
-		response.sendRedirect("login.jsp");
-	}
-%>
-
 <body>
 	<div data-role="page" id="Mainpage">
 
@@ -47,7 +40,7 @@
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<div class="ui-block-a">
 				<h4>
-					Utente collegato: <%=nome%>
+					Utente: <%=request.getUserPrincipal().getName() %>
 				</h4>
 			</div>
 			<div class="ui-block-b" align="right">
@@ -58,30 +51,3 @@
 	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

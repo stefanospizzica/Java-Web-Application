@@ -7,6 +7,6 @@
 <title>Landing page</title>
 </head>
 <body>
-	<%response.sendRedirect("admin/login.jsp");%>
+	<%response.sendRedirect("admin/principale.jsp");%>
 </body>
 </html>

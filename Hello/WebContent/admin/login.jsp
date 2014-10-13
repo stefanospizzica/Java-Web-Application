@@ -15,10 +15,6 @@
 </head>
 
 <body>
-	<%
-		String errore = (String) session.getAttribute("LOGIN_ERROR");
-		String user = (String) session.getAttribute("CURR_USER_NAME");
-	%>
 	<div data-role="page" id="loginpage">
 
 		<div data-role="header" data-theme="b" align="center">
@@ -29,28 +25,25 @@
 			<div align="center">
 				<img align="middle" src="${pageContext.request.contextPath}/assets/img/domotica.jpg" width="300" height="180" alt="domotica" />
 			</div>
-			<%
-				if (errore != null) {
-			%>
-			<p>
-				<font color='red'><b><%=errore%></b></font>
-			</p>
-			<%
-				}
-			%>
 
-			<form name="autenticazione" method="POST" action="${pageContext.request.contextPath}/AuthServlet" id="loginform">
-				Utente <br> <input type="text" name="fld_username"	placeholder="Inserire codice utente" data-theme="b"
-					value="<%=(user == null) ? "" : user%>" required /><br>
-				Codice di accesso <br> <input type="password" name="fld_password" placeholder="Inserire codice di accesso" data-theme="b" required /><br>
-				<fieldset class="ui-grid-a">
-					<div class="ui-block-a" align="center">
+			<form name="autenticazione" method="POST" action="j_security_check" id="loginform">
+				Utente <br> 
+				<input type="text" name="j_username" placeholder="Inserire codice utente" data-theme="b" required /><br>
+				Codice di accesso <br> 
+				<input type="password" name="j_password" placeholder="Inserire codice di accesso" data-theme="b" required /><br>
+				
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a">			
+						
+					</div>
+					<div class="ui-block-b">
 						<input type="submit" value="Autenticati" data-inline=true data-icon="check" data-theme="b">
 					</div>
-					<div class="ui-block-b" align="center">
-						<a href="#" id="Cancella" data-role="button" data-inline=true data-icon="delete" data-theme="a">Cancella</a>
+					<div class="ui-block-c">			
+						
 					</div>
 				</fieldset>
+			
 			</form>
 		</div>
 
@@ -59,17 +52,5 @@
 		</div>
 
 	</div>
-
-	<script type="text/javascript">
-		$(document).on("click", "#Cancella", function() {
-			var u = document.getElementsByName("fld_username");
-			var p = document.getElementsByName("fld_password");
-			for (var i = 0; i < u.length; i++) {
-				u[i].value = "";
-				p[i].value = "";
-			}
-		});
-	</script>
-
 </body>
 </html>

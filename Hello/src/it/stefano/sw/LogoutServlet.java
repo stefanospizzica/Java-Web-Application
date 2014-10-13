@@ -39,7 +39,7 @@ public class LogoutServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect("/Domotic/admin/login.jsp");
+		response.sendRedirect("/Domotic/admin/principale.jsp");
 
 	}
 
