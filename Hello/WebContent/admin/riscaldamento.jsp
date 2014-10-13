@@ -151,7 +151,7 @@
 						if(session.getAttribute("GIORNO") == "SA"){	%>$('#radio-sa').prop("checked",true).checkboxradio("refresh");<% }
 						if(session.getAttribute("GIORNO") == "DO"){	%>$('#radio-do').prop("checked",true).checkboxradio("refresh");<% }
 						%>
-
+						
 						$('#flip-crono').val("<%=session.getAttribute("STATOCRONOTERMOSTATO")%>").flipswitch("refresh");
 						$('#low-temp').val("<%=session.getAttribute("TEMPERATURA_MINIMA")%>").slider("refresh");
 						$('#hi-temp').val("<%=session.getAttribute("TEMPERATURA_MASSIMA")%>").slider("refresh");

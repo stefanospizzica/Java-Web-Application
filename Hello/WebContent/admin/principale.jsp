@@ -40,7 +40,7 @@
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<div class="ui-block-a">
 				<h4>
-					Utente: <%=request.getUserPrincipal().getName() %>
+					User: <%=request.getUserPrincipal().getName()%>
 				</h4>
 			</div>
 			<div class="ui-block-b" align="right">
