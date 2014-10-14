@@ -43,10 +43,13 @@ public class Riscaldamento extends HttpServlet {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String statocronotermostato=null;
+		String ultimalettura=null;
 		float temperaturaminima=0f;
 		float temperaturamassima=0f;
 		float temperaturasicurezza=0f;
-		float isteresi=0;
+		float isteresi=0f;
+		float temperatura=0f;
+		float umidita=0f;
 		String ultimamodifica=null;
 		
 		HttpSession session=request.getSession(true);
@@ -129,6 +132,17 @@ public class Riscaldamento extends HttpServlet {
 					Tdomenica.SetStart4(rs.getString("Start4"));
 					Tdomenica.SetEnd4(rs.getString("End4"));
 				} 
+			}
+			
+			ps = con.prepareStatement("SELECT * FROM daticlima ORDER BY  Timestamp DESC LIMIT 1");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				temperatura				= Float.parseFloat(rs.getString("temperatura"));
+				umidita					= Float.parseFloat(rs.getString("umidita")); 
+				ultimalettura			= rs.getString("Timestamp");
+				session.setAttribute("TEMPERATURA_ULTIMA", temperatura);
+				session.setAttribute("UMIDITA_ULTIMA", umidita);
+				session.setAttribute("LETTURA_ULTIMA", ultimalettura);
 			}
 		}
 		catch (SQLException e) {

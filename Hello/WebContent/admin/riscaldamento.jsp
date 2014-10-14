@@ -25,13 +25,34 @@
 		<div data-role="main" class="ui-body ui-body-b">
 
 			<div data-role="fieldcontain">
-				<label for="flip-crono">Stato</label>
-				<select	name="flip-crono" id="flip-crono" data-role="flipswitch" data-mini="true">
-					<option value="off">Off</option>
-					<option value="on">On</option>
-				</select>
+				<fieldset class="ui-grid-b">
+		
+					<div class="ui-block-a" align="left">
+						<div class="ui-field-contain" style="font-size:25px" data-name="tempdiv">
+							dummy
+						</div>				
+					</div>
+					
+					<div class="ui-block-c" align="center">
+						<label for="flip-crono">Stato</label>
+						<select	name="flip-crono" id="flip-crono" data-role="flipswitch" data-mini="true">
+							<option value="off">Off</option>
+							<option value="on">On</option>
+						</select>
+					</div>
+					
+					<div class="ui-block-c" align="right">				
+						<div class="ui-field-contain" style="font-size:25px" data-name="umiddiv">
+							dummy 
+						</div>
+					</div>
+				</fieldset>
 			</div>
-
+				
+			<div data-role="fieldcontain" data-name="ultimodiv" style="font-size:15px" align="center">	
+				dummy
+			</div>
+							
 			<div data-role="fieldcontain">
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a">
@@ -169,7 +190,11 @@
 
 						$('input[id=time-on4]').val("<%=t.GetStart4().toString()%>");
 						$('input[id=time-off4]').val("<%=t.GetEnd4().toString()%>");
-
+						
+						$('[data-name="tempdiv"]').text("<%=session.getAttribute("TEMPERATURA_ULTIMA")%>°C");
+						$('[data-name="umiddiv"]').text("<%=session.getAttribute("UMIDITA_ULTIMA")%>%");
+						$('[data-name="ultimodiv"]').text("Aggiornato al <%=session.getAttribute("LETTURA_ULTIMA")%>");
+						
 						$(document).on('change', '[type="radio"]', function(){
 							day=$(this).val();
 							$.post("Riscaldamento",{azione:"cambiogiorno",dayselected:day});
