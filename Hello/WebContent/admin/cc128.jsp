@@ -12,29 +12,18 @@
 	<script src="${pageContext.request.contextPath}/jquery-1.11.1.js"></script>
 	<script	src="${pageContext.request.contextPath}/jquery.mobile-1.4.4.js"></script>
 
-	<title>Pagina principale</title>
+	<title>Grafici Consumi</title>
 </head>
 
 <body>
-	<div data-role="page" id="Mainpage">
+	<div data-role="page" id="Maincc128page">
 
 		<div data-role="header" data-theme="b">
-			<h1>Menu principale</h1>
+			<h1>Grafici</h1>
 		</div>
 		
 		<div data-role="main" class="ui-content ui-body-b">
-
-			<ul data-role="listview" data-inset="true">
-				<li><a href="${pageContext.request.contextPath}/Riscaldamento"> <img src="${pageContext.request.contextPath}/assets/img/calorifero.jpg" width="80" height="80">
-						<h2>Climatizzazione</h2>
-						<p>Gestione caloriferi e caldaia</p></a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/cc128.jsp"> <img src="${pageContext.request.contextPath}/assets/img/contatore.jpg" width="80" height="80">
-						<h2>Energia</h2>
-						<p>Verifica consumi di corrente</p></a></li>
-				<li><a href=""> <img src="${pageContext.request.contextPath}/assets/img/sicurezza.jpg"	width="80" height="80">
-						<h2>Sicurezza</h2>
-						<p>Visualizzazione telecamera</p></a></li>
-			</ul>
+			<a><img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/></a>
 		</div>
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">

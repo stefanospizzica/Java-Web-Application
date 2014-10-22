@@ -48,7 +48,7 @@
 		</div>
 
 		<div data-role="footer" data-theme="b" align="center">
-			<i>Sito Mobile http://stesim.no-ip.com</i>
+			<i>Sito Mobile http://stesim.no-ip.org:8080/Domotic</i>
 		</div>
 
 	</div>
