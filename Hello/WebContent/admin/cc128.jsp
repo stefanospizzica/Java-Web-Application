@@ -28,9 +28,11 @@
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<div class="ui-block-a">
-				<h4>
-					User: <%=request.getUserPrincipal().getName()%>
-				</h4>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a" align="left">
+						<a href="${pageContext.request.contextPath}/admin/principale.jsp" data-role="button" data-icon="home">Home</a>
+					</div>
+				</fieldset>
 			</div>
 			<div class="ui-block-b" align="right">
 				<a href="${pageContext.request.contextPath}/LogoutServlet" data-role="button" data-icon="delete">Termina</a>
