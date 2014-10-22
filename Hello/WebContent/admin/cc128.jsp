@@ -19,20 +19,16 @@
 	<div data-role="page" id="Maincc128page">
 
 		<div data-role="header" data-theme="b">
-			<h1>Grafici</h1>
+			<h1>Grafici dei consumi</h1>
 		</div>
 		
 		<div data-role="main" class="ui-content ui-body-b">
-			<a><img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/></a>
+			<img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/>
 		</div>
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
-			<div class="ui-block-a">
-				<fieldset class="ui-grid-a">
-					<div class="ui-block-a" align="left">
-						<a href="${pageContext.request.contextPath}/admin/principale.jsp" data-role="button" data-icon="home">Home</a>
-					</div>
-				</fieldset>
+			<div class="ui-block-a" align="left">
+				<a href="${pageContext.request.contextPath}/admin/principale.jsp" data-role="button" data-icon="home">Home</a>
 			</div>
 			<div class="ui-block-b" align="right">
 				<a href="${pageContext.request.contextPath}/LogoutServlet" data-role="button" data-icon="delete">Termina</a>
