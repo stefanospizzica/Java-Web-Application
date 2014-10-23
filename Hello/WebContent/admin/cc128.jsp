@@ -22,9 +22,23 @@
 			<h1>Grafici dei consumi</h1>
 		</div>
 		
-		<div data-role="main" class="ui-content ui-body-b">
+		<div data-role="main" class="ui-content ui-body-b" id="graphlist">
 			<img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-60min-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-6h-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-1day-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-7day-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-30day-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-365day-l.png" alt="001"/>
 		</div>
+		
+		<script>
+		$(document).on("pagecreate", "#Maincc128page", function() {
+			setInterval(function() {
+				location.reload();
+			}, 30000);  //Aggiorna ogni  30 secondi la pagina 
+		});
+		</script>
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
 			<div class="ui-block-a" align="left">
