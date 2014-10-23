@@ -34,6 +34,9 @@
 				<li><a href=""> <img src="${pageContext.request.contextPath}/assets/img/sicurezza.jpg"	width="80" height="80">
 						<h2>Sicurezza</h2>
 						<p>Visualizzazione telecamera</p></a></li>
+				<li><a href=""><img src="${pageContext.request.contextPath}/assets/img/gauge.png"	width="80" height="80">
+						<h2>Live</h2>
+						<p>Dati in tempo reale</p></a></li>
 			</ul>
 		</div>
 		
