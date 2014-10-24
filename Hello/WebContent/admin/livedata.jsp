@@ -25,11 +25,7 @@
 			<h1>Dati in tempo reale</h1>
 		</div>
 		
-		<div data-role="main" class="ui-content ui-body-b" id="valuediv">
-			<div id="dinamicdiv">
-			</div>
-			<p>stdErr = <%=sErr%> </p>
-			<p>stdOut = <%=sOut%> </p>
+		<div data-role="main" class="ui-content ui-body-b" id="dinamicdiv">
 		</div>
 		
 		<script>
@@ -55,7 +51,7 @@
 					}
 				%>
 				}, 5000);  
-				$("#dinamicdiv").load()
+				//$("#dinamicdiv").text("stdErr = " + sErr +" stdOut = " + sOut);
 			});
 
 			$(document).on("pagehide", "#livedatapage", function() {
