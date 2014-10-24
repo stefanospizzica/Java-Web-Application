@@ -30,11 +30,11 @@
 						<p>Gestione caloriferi e caldaia</p></a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/cc128.jsp"> <img src="${pageContext.request.contextPath}/assets/img/contatore.jpg" width="80" height="80">
 						<h2>Energia</h2>
-						<p>Verifica consumi di corrente</p></a></li>
+						<p>Grafico consumi di corrente</p></a></li>
 				<li><a href=""> <img src="${pageContext.request.contextPath}/assets/img/sicurezza.jpg"	width="80" height="80">
 						<h2>Sicurezza</h2>
 						<p>Visualizzazione telecamera</p></a></li>
-				<li><a href=""><img src="${pageContext.request.contextPath}/assets/img/gauge.png"	width="80" height="80">
+				<li><a href="${pageContext.request.contextPath}/admin/livedata.jsp"><img src="${pageContext.request.contextPath}/assets/img/gauge.png"	width="80" height="80">
 						<h2>Live</h2>
 						<p>Dati in tempo reale</p></a></li>
 			</ul>

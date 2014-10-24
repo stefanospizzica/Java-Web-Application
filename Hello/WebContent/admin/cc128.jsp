@@ -14,15 +14,37 @@
 
 	<title>Grafici Consumi</title>
 </head>
-
 <body>
+	<%@ page import="java.io.*" %>
+	<%
+		try {
+			String s = null;
+			Runtime r =Runtime.getRuntime();
+			String cmd = "sudo /home/pi/create-graph.sh";
+			Process p = r.exec(cmd);
+			p.waitFor();
+			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			while ((s = stdError.readLine()) != null) {
+                log(s);
+            }
+			p.destroy();
+		} catch(Exception e) {
+			log(e.toString());
+		}
+	%>
+
 	<div data-role="page" id="Maincc128page">
 
 		<div data-role="header" data-theme="b">
 			<h1>Grafici dei consumi</h1>
 		</div>
 		
+		<div data-role="popup" id="calcpopup">
+			<p>Elaborazione grafici in corso</p>
+		</div>
+		
 		<div data-role="main" class="ui-content ui-body-b" id="graphlist">
+			
 			<img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/>
 			<img src="${pageContext.request.contextPath}/assets/img/power-60min-l.png" alt="001"/>
 			<img src="${pageContext.request.contextPath}/assets/img/power-6h-l.png" alt="001"/>
@@ -30,14 +52,20 @@
 			<img src="${pageContext.request.contextPath}/assets/img/power-7day-l.png" alt="001"/>
 			<img src="${pageContext.request.contextPath}/assets/img/power-30day-l.png" alt="001"/>
 			<img src="${pageContext.request.contextPath}/assets/img/power-365day-l.png" alt="001"/>
+			
 		</div>
 		
 		<script>
-		$(document).on("pagecreate", "#Maincc128page", function() {
-			setInterval(function() {
-				location.reload();
-			}, 30000);  //Aggiorna ogni  30 secondi la pagina 
-		});
+			$(document).on("pageshow", "#Maincc128page", function() {
+					myInterval = setInterval(function() {
+					location.reload();
+					$("#calcpopup" ).popup( "open" );
+				}, 30000);  //Aggiorna ogni  30 secondi la pagina 		
+			});
+
+			$(document).on("pagehide", "#Maincc128page", function() {
+				clearInterval(myInterval); 		
+			});
 		</script>
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">
