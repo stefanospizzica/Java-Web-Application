@@ -32,10 +32,13 @@
 		</div>
 		
 		<script>
+		// Funzione chiamata ogni x secondi che chiama sul server tramite una post una funziona java che effettua il calcolo
+		// degli ultimi parametri letti sul database powertemp.rrd e li ritorna allo script stesso
+		//
 			$(document).on("pageshow", "#livedatapage", function() {
 				myInterval = setInterval(function() {
-				i++;
-				<%
+					i++;
+//				<%
 //					try {		
 //						Runtime r =Runtime.getRuntime();
 //						String cmd = "sudo /home/pi/rrdtool lastupdate /home/pi/powertemp.rrd";
@@ -53,8 +56,12 @@
 //					} catch(Exception e) {
 //						log(e.toString());
 //					}
-				%>
-				$("#textarea-a").text("Iterazione = " + i);
+//				%>
+					//$.post('new.jsp',{ param1: 'param1value', param2: 'param2value'},function(data){
+					//if(data){
+					//	console.log(data); // response from your server
+				  	//}
+					$("#textarea-a").text("Iterazione = " + i);
 				}, 1000);  
 			});
 
