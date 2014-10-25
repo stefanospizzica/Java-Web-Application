@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -14,10 +13,12 @@
 
 	<title>Dati in tempo reale</title>
 </head>
+
+<script>
+	var i = 0;
+</script>
+
 <body>
-	<%@ page import="java.io.*" %>
-	<%	String sErr = null;
-		String sOut = null;		%>
 
 	<div data-role="page" id="livedatapage">
 
@@ -26,36 +27,39 @@
 		</div>
 		
 		<div data-role="main" class="ui-content ui-body-b" id="dinamicdiv">
+			<textarea name="textarea" id="textarea-a">				
+			</textarea>
 		</div>
 		
 		<script>
 			$(document).on("pageshow", "#livedatapage", function() {
 				myInterval = setInterval(function() {
+				i++;
 				<%
-					try {		
-						Runtime r =Runtime.getRuntime();
-						String cmd = "sudo /home/pi/rrdtool lastupdate /home/pi/powertemp.rrd";
-						Process p = r.exec(cmd);
-						p.waitFor();
-						BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-						while ((sErr = stdError.readLine()) != null) {
-			                log(sErr);
-			            }
-						BufferedReader stdOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
-						while ((sOut = stdOut.readLine()) != null) {
-			                log(sOut);
-			            }
-						p.destroy();
-					} catch(Exception e) {
-						log(e.toString());
-					}
+//					try {		
+//						Runtime r =Runtime.getRuntime();
+//						String cmd = "sudo /home/pi/rrdtool lastupdate /home/pi/powertemp.rrd";
+//						Process p = r.exec(cmd);
+//						p.waitFor();
+//						BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+//						while ((sErr = stdError.readLine()) != null) {
+//			                log(sErr);
+//			            }
+//						BufferedReader stdOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//						while ((sOut = stdOut.readLine()) != null) {
+//			                log(sOut);
+//			            }
+//						p.destroy();
+//					} catch(Exception e) {
+//						log(e.toString());
+//					}
 				%>
-				}, 5000);  
-				//$("#dinamicdiv").text("stdErr = " + sErr +" stdOut = " + sOut);
+				$("#textarea-a").text("Iterazione = " + i);
+				}, 1000);  
 			});
 
 			$(document).on("pagehide", "#livedatapage", function() {
-				clearInterval(myInterval); 		
+//				clearInterval(myInterval); 		
 			});
 		</script>
 		
