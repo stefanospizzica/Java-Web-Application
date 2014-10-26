@@ -14,10 +14,6 @@
 	<title>Dati in tempo reale</title>
 </head>
 
-<script>
-	var i = 0;
-</script>
-
 <body>
 
 	<div data-role="page" id="livedatapage">
@@ -27,7 +23,7 @@
 		</div>
 		
 		<div data-role="main" class="ui-content ui-body-b" id="dinamicdiv">
-			<textarea name="textarea" id="textarea-a">				
+			<textarea name="textarea" id="textarea-a">
 			</textarea>
 		</div>
 		
@@ -37,36 +33,14 @@
 		//
 			$(document).on("pageshow", "#livedatapage", function() {
 				myInterval = setInterval(function() {
-					i++;
-//				<%
-//					try {		
-//						Runtime r =Runtime.getRuntime();
-//						String cmd = "sudo /home/pi/rrdtool lastupdate /home/pi/powertemp.rrd";
-//						Process p = r.exec(cmd);
-//						p.waitFor();
-//						BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//						while ((sErr = stdError.readLine()) != null) {
-//			                log(sErr);
-//			            }
-//						BufferedReader stdOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//						while ((sOut = stdOut.readLine()) != null) {
-//			                log(sOut);
-//			            }
-//						p.destroy();
-//					} catch(Exception e) {
-//						log(e.toString());
-//					}
-//				%>
-					//$.post('new.jsp',{ param1: 'param1value', param2: 'param2value'},function(data){
-					//if(data){
-					//	console.log(data); // response from your server
-				  	//}
-					$("#textarea-a").text("Iterazione = " + i);
-				}, 1000);  
+					$.post("${pageContext.request.contextPath}/Livedata",{azione:"calc"})
+   					alert(<%=request.getAttribute("retval")%>);
+					$("#textarea-a").text(ritorno);
+				}, 5000);  
 			});
 
 			$(document).on("pagehide", "#livedatapage", function() {
-//				clearInterval(myInterval); 		
+				clearInterval(myInterval); 		
 			});
 		</script>
 		

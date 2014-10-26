@@ -197,7 +197,7 @@
 						
 						$(document).on('change', '[type="radio"]', function(){
 							day=$(this).val();
-							$.post("Riscaldamento",{azione:"cambiogiorno",dayselected:day});
+							$.post("${pageContext.request.contextPath}/Riscaldamento",{azione:"cambiogiorno",dayselected:day});
 							location.reload();
 						}); 
 						
