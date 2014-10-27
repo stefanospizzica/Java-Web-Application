@@ -3,8 +3,12 @@ package it.stefano.sw;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,36 +42,37 @@ public class Livedata extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sErr = null;
-		String sOut = null;
+		String [] rrdtoolreport = new String[6];
 		log("Chiamata doPost in Livedata");
-		
-		request.setAttribute("retval", "fanculo");
-		
-		/**
+		response.setContentType("application/json");
+	    PrintWriter out = response.getWriter();
+	    
 		try {		
 			Runtime r =Runtime.getRuntime();
-			String cmd = "sudo /home/pi/rrdtool lastupdate /home/pi/powertemp.rrd";
+			String cmd = "sudo /usr/bin/rrdtool lastupdate /home/pi/powertemp.rrd";
+			String resp;
 			Process p = r.exec(cmd);
 			p.waitFor();
 			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			while ((sErr = stdError.readLine()) != null) {
-				request.setAttribute("retval", sErr);
-				log(sErr);
+			while ((resp = stdError.readLine()) != null) {
+				rrdtoolreport[0] = resp; 
+				log(rrdtoolreport[0]);
 			}
 			BufferedReader stdOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			while ((sOut = stdOut.readLine()) != null) {
-				request.setAttribute("retval", sOut);
-				log(sOut);
+			while ((resp = stdOut.readLine()) != null) {
+				rrdtoolreport[1] = resp;
+				log(rrdtoolreport[1]);
 			}
 			p.destroy();
 		} catch(Exception e) {
-			log(e.toString());
-			request.setAttribute("retval", e.toString());
+			rrdtoolreport[2]=e.toString();
+			log(rrdtoolreport[2]);
 		}
-		*/
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/livedata.jsp");
-		dispatcher.forward(request, response);
+		
+		rrdtoolreport[1] = "1414010470: 00330 24.2";
+
+		Gson rrdtoolreportjson = new Gson();
+		out.write(rrdtoolreportjson.toJson(rrdtoolreport));
 	}
 
 }

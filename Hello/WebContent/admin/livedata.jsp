@@ -25,6 +25,10 @@
 		<div data-role="main" class="ui-content ui-body-b" id="dinamicdiv">
 			<textarea name="textarea" id="textarea-a">
 			</textarea>
+			<textarea name="textarea" id="textarea-b">
+			</textarea>
+			<textarea name="textarea" id="textarea-c">
+			</textarea>
 		</div>
 		
 		<script>
@@ -33,9 +37,13 @@
 		//
 			$(document).on("pageshow", "#livedatapage", function() {
 				myInterval = setInterval(function() {
-					$.post("${pageContext.request.contextPath}/Livedata",{azione:"calc"})
-   					alert(<%=request.getAttribute("retval")%>);
-					$("#textarea-a").text(ritorno);
+					$.post("${pageContext.request.contextPath}/Livedata",{azione:"calc"}, function (retval) {
+						var fields = retval.toString().split(",");
+						var elems = fields[1].split(" ");
+						$("#textarea-a").text(elems[0]);
+						$("#textarea-b").text(elems[1]);
+						$("#textarea-c").text(elems[2]);
+					})
 				}, 5000);  
 			});
 
