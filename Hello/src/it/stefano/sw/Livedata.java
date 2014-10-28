@@ -69,10 +69,18 @@ public class Livedata extends HttpServlet {
 			log(rrdtoolreport[2]);
 		}
 		
-		rrdtoolreport[1] = "1414010470: 00330 24.2";
-
+		formatCC128data(rrdtoolreport);
+		
 		Gson rrdtoolreportjson = new Gson();
 		out.write(rrdtoolreportjson.toJson(rrdtoolreport));
+	}
+	
+	private void formatCC128data(String report[]) {
+		String fields[] = report[1].split(" ");
+		fields[0] = new java.util.Date((long)Long.parseLong(fields[0].substring(0, fields[0].length()-1))*1000).toString();
+		fields[1] = String.valueOf(Integer.parseInt(fields[1]));
+		fields[2] = String.valueOf(Float.parseFloat(fields[2]));
+		report[1] = fields[0] + "-" + fields[1] + "-" + fields[2];
 	}
 
 }

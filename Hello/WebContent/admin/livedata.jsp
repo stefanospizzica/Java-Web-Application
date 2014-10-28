@@ -23,12 +23,34 @@
 		</div>
 		
 		<div data-role="main" class="ui-content ui-body-b" id="dinamicdiv">
-			<textarea name="textarea" id="textarea-a">
-			</textarea>
-			<textarea name="textarea" id="textarea-b">
-			</textarea>
-			<textarea name="textarea" id="textarea-c">
-			</textarea>
+			<style>
+      			.auto-text-area{
+        			min-height: 20px; /* for default height */
+        			overflow: hidden;
+        			resize: none;
+        			padding: 4px;
+        			font-size: 22px;
+        			border: 1px solid #000;
+      				}
+ 	   		</style>
+ 	   		
+			<div data-role="fieldcontain">
+				<label for="textarea-a">Data di acquisizione </label>
+				<textarea class="auto-text-area" name="textarea" id="textarea-a">
+				</textarea>
+			</div>
+			
+			<div data-role="fieldcontain">
+				<label for="textarea-a">Consumo istantaneo W </label>
+				<textarea class="auto-text-area" name="textarea" id="textarea-b">
+				</textarea>
+			</div>
+		
+			<div data-role="fieldcontain">
+				<label for="textarea-a">Temperatura istantanea °C </label>
+				<textarea class="auto-text-area" name="textarea" id="textarea-c">
+				</textarea>
+			</div>
 		</div>
 		
 		<script>
@@ -39,7 +61,7 @@
 				myInterval = setInterval(function() {
 					$.post("${pageContext.request.contextPath}/Livedata",{azione:"calc"}, function (retval) {
 						var fields = retval.toString().split(",");
-						var elems = fields[1].split(" ");
+						var elems = fields[1].split("-");
 						$("#textarea-a").text(elems[0]);
 						$("#textarea-b").text(elems[1]);
 						$("#textarea-c").text(elems[2]);
