@@ -60,7 +60,7 @@
 					myInterval = setInterval(function() {
 					location.reload();
 					$("#calcpopup" ).popup( "open" );
-				}, 30000);  //Aggiorna ogni  30 secondi la pagina 		
+				}, 120000);  //Aggiorna ogni  120 secondi la pagina 		
 			});
 
 			$(document).on("pagehide", "#Maincc128page", function() {
