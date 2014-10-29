@@ -45,13 +45,13 @@
 		
 		<div data-role="main" class="ui-content ui-body-b" id="graphlist">
 			
-			<img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-60min-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-6h-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-1day-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-7day-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-30day-l.png" alt="001"/>
-			<img src="${pageContext.request.contextPath}/assets/img/power-365day-l.png" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-10min-l.png" style="width: 90%;" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-60min-l.png" style="width: 90%;" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-6h-l.png" style="width: 90%;" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-1day-l.png" style="width: 90%;"alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-7day-l.png" style="width: 90%;" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-30day-l.png" style="width: 90%;" alt="001"/>
+			<img src="${pageContext.request.contextPath}/assets/img/power-365day-l.png" style="width: 90%;" alt="001"/>
 			
 		</div>
 		
