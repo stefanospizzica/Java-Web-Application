@@ -22,6 +22,10 @@
 			<h1>Cronotermostato</h1>
 		</div>
 		
+		<div data-role="popup" id="refreshpopup">
+			<p>Aggiornamento database in corso</p>
+		</div>
+
 		<div data-role="main" class="ui-body ui-body-b">
 
 			<div data-role="fieldcontain">
@@ -224,9 +228,9 @@
 													t4on: $('input[id=time-on4]').val(),
 													t4off:$('input[id=time-off4]').val(),
 													}, function (retval) {
+														$("#refreshpopup" ).popup( "open" );
 														location.reload();
 													});
-//							location.reload();
 						}); 
 
 						$(document).on('click', '#rfrsh', function(){
