@@ -223,8 +223,10 @@
 													t3off:$('input[id=time-off3]').val(),
 													t4on: $('input[id=time-on4]').val(),
 													t4off:$('input[id=time-off4]').val(),
+													}, function (retval) {
+														location.reload();
 													});
-							location.reload();
+//							location.reload();
 						}); 
 
 						$(document).on('click', '#rfrsh', function(){
