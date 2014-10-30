@@ -57,7 +57,7 @@
 				dummy
 			</div>
 							
-			<div data-role="fieldcontain">
+			<div data-role="fieldcontain" id="temperaturearea">
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a">
 						<div data-role="fieldcontain">
@@ -113,10 +113,9 @@
 					</fieldset>
 				</form>
 		
-				<style type="text/css"> .ui-input-text { width: 50%;}
+				<style type="text/css"> .ui-input-text { width: 50%;}</style>
 				
-				</style>
-				<div data-role="fieldcontain">
+				<div data-role="fieldcontain" id="programmazione">
 					<fieldset class="ui-grid-a">
 						<div class="ui-block-a">
 							<label for="time-on1">Accensione</label> <input type="time"	name="time-on1" id="time-on1" value=""	class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
@@ -153,6 +152,7 @@
 						</div>
 					</fieldset>
 				</div>
+			
 			</div>
 
 			<fieldset class="ui-grid-a">
@@ -195,23 +195,74 @@
 						$('input[id=time-on4]').val("<%=t.GetStart4().toString()%>");
 						$('input[id=time-off4]').val("<%=t.GetEnd4().toString()%>");
 						
+						if ($("#flip-crono").val() === "off") {
+							$('#programmazione').addClass("ui-disabled");
+							$('#programmazione').prop("disabled", true);
+							$('#temperaturearea').addClass("ui-disabled");
+							$('#temperaturearea').prop("disabled", true);
+						} else {
+							$('#programmazione').removeClass("ui-disabled");
+							$('#temperaturearea').removeClass("ui-disabled");
+						}
+							
+						
 						$('[data-name="tempdiv"]').text("<%=session.getAttribute("TEMPERATURA_ULTIMA")%>°C");
 						$('[data-name="umiddiv"]').text("<%=session.getAttribute("UMIDITA_ULTIMA")%>%");
 						$('[data-name="ultimodiv"]').text("Aggiornato al <%=session.getAttribute("LETTURA_ULTIMA")%>");
 						
 						$(document).on('change', '[type="radio"]', function(){
 							day=$(this).val();
-							$.post("${pageContext.request.contextPath}/Riscaldamento",{azione:"cambiogiorno",dayselected:day});
-							location.reload();
+							$.post("${pageContext.request.contextPath}/Riscaldamento",{azione:"cambiogiorno",dayselected:day}, function (retval){
+								location.reload();
+							});
+						}); 
+						
+						$(document).on('change', '#flip-crono', function(){
+							st=$(this).val();
+							if (st === "off") {
+								$('#programmazione').addClass("ui-disabled");
+								$('#programmazione').prop("disabled", true);
+								$('#temperaturearea').addClass("ui-disabled");
+								$('#temperaturearea').prop("disabled", true);
+							} else {
+								$('#programmazione').removeClass("ui-disabled");
+								$('#temperaturearea').removeClass("ui-disabled");
+							}
 						}); 
 						
 						$(document).on('click', '#invio', function(){
-							vcronotermostato = $('#flip-crono').val();
-							vlowtemp =         $('#low-temp').val();
-							vhitemp =          $('#hi-temp').val();
-							vsafetemp =        $('#safe-temp').val();
-							vhysttemp =        $('#hyst-temp').val();
-							giorno_ = 		   "<%=session.getAttribute("GIORNO")%>";
+							vcronotermostato = 	$('#flip-crono').val();
+							vlowtemp =         	$('#low-temp').val();
+							vhitemp =          	$('#hi-temp').val();
+							vsafetemp =        	$('#safe-temp').val();
+							vhysttemp =        	$('#hyst-temp').val();
+							giorno_ = 		   	"<%=session.getAttribute("GIORNO")%>";
+							t1on_ = 			$('input[id=time-on1]').val(),
+							t1off_ = 			$('input[id=time-off1]').val(),
+							t2on_ = 			$('input[id=time-on2]').val(),
+							t2off_ = 			$('input[id=time-off2]').val(),
+							t3on_ = 			$('input[id=time-on3]').val(),
+							t3off_ = 			$('input[id=time-off3]').val(),
+							t4on_ = 			$('input[id=time-on4]').val(),
+							t4off_ = 			$('input[id=time-off4]').val()
+							
+							if(t1off_ < t1on_){
+								alert("T1 errato");
+								return;
+							}
+							if(t2off_ < t2on_){
+								alert("T2 errato");
+								return;
+							}
+							if(t3off_ < t3on_){
+								alert("T3 errato");
+								return;
+							}
+							if(t4off_ < t4on_){
+								alert("T4 errato");
+								return;
+							}
+							
 							$.post("${pageContext.request.contextPath}/Riscaldamento",{azione:"conferma",
 													ct:vcronotermostato,
 													lt:vlowtemp,
@@ -219,14 +270,14 @@
 													st:vsafetemp,
 													hyt:vhysttemp,
 													g:giorno_,
-													t1on: $('input[id=time-on1]').val(),
-													t1off:$('input[id=time-off1]').val(),
-													t2on: $('input[id=time-on2]').val(),
-													t2off:$('input[id=time-off2]').val(),
-													t3on: $('input[id=time-on3]').val(),
-													t3off:$('input[id=time-off3]').val(),
-													t4on: $('input[id=time-on4]').val(),
-													t4off:$('input[id=time-off4]').val(),
+													t1on: t1on_,
+													t1off:t1off_,
+													t2on: t2on_,
+													t2off:t2off_,
+													t3on: t3on_,
+													t3off:t3off_,
+													t4on: t4on_,
+													t4off:t4off_,
 													}, function (retval) {
 														$("#refreshpopup" ).popup( "open" );
 														location.reload();
