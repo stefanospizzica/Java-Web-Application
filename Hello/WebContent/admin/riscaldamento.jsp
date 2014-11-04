@@ -61,14 +61,14 @@
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a">
 						<div data-role="fieldcontain">
-							<label for="low-temp">°C Min</label>
+							<label for="low-temp">°C Spento</label>
 							<input type="range"	name="low-temp" id="low-temp" value="15" min="15" max="25" step="0.2" />
 						</div>
 					</div>				
 
 					<div class="ui-block-b">
 						<div data-role="fieldcontain">
-							<label for="hi-temp">°C Max</label>
+							<label for="hi-temp">°C Acceso</label>
 							<input type="range"	name="hi-temp" id="hi-temp" value="15" min="15" max="25" step="0.2" />
 						</div>
 					</div>				
@@ -247,19 +247,19 @@
 							t4off_ = 			$('input[id=time-off4]').val()
 							
 							if(t1off_ < t1on_){
-								alert("T1 errato");
+								alert("Errore nel range di orario 1");
 								return;
 							}
 							if(t2off_ < t2on_){
-								alert("T2 errato");
+								alert("Errore nel range di orario 2");
 								return;
 							}
 							if(t3off_ < t3on_){
-								alert("T3 errato");
+								alert("Errore nel range di orario 3");
 								return;
 							}
 							if(t4off_ < t4on_){
-								alert("T4 errato");
+								alert("Errore nel range di orario 4");
 								return;
 							}
 							

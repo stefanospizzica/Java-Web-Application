@@ -54,7 +54,6 @@ public class Riscaldamento extends HttpServlet {
 		
 		HttpSession session=request.getSession(true);
 		
-		log("DOGET START: Setto gli attributi di inizializzazione interrogando il database");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con =DriverManager.getConnection ("jdbc:mysql://stesim.no-ip.org:3306/cronotermostato","stefano","spo1460simo");
@@ -183,7 +182,6 @@ public class Riscaldamento extends HttpServlet {
 			session.setAttribute("ORARI", Tlunedi);
 		}
 		
-		log("DOGET END: Invoco la pagina riscaldamento.jsp per il giorno " + giorno);
 		request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 	}
 
@@ -204,11 +202,9 @@ public class Riscaldamento extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		
 		String azione = (String) request.getParameter("azione");
-		log("DOPOST START: Hai postato "+azione);
 		
 		if("cambiogiorno".equals(azione)) {
 			giorno = (String) request.getParameter("dayselected");	
-			log("Giorno: " + giorno);
 			if("LU".equals(giorno)){
 				session.setAttribute("GIORNO", "LU");
 				session.setAttribute("ORARI", Tlunedi);		
@@ -232,7 +228,6 @@ public class Riscaldamento extends HttpServlet {
 				session.setAttribute("ORARI", Tdomenica);		
 			} 
 			
-			log("DOPOST END: ReInvoco la pagina riscaldamento.jsp");
 			request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 		}
 				
@@ -308,13 +303,6 @@ public class Riscaldamento extends HttpServlet {
 				Tdomenica.SetEnd4  ((String)request.getParameter("t4off"));				
 			} 
 			
-			log("DOPOST: Stato cronotermostato: "+statocronotermostato);
-			log("DOPOST: Temperatura massima: "+temperaturamassima);
-			log("DOPOST: Temperatura minima: "+temperaturaminima);
-			log("DOPOST: Temperatura sicurezza: "+temperaturasicurezza);
-			log("DOPOST: Temperatura isteresi: "+ isteresi);
-			log("DOPOST: Giorno selezionato: "+ giorno);
-
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				con =DriverManager.getConnection ("jdbc:mysql://stesim.no-ip.org:3306/cronotermostato","stefano","spo1460simo");
@@ -334,9 +322,7 @@ public class Riscaldamento extends HttpServlet {
 				ps.setString(13, request.getParameter("t4off"));
 				ps.setString(14, giorno);
 				
-				log("DOPOST: Scrittura su database...");
 				rsq = ps.executeUpdate();
-				log("DOPOST END: Esito scrittura: " + rsq);
 			}
 			catch (SQLException e) {
 					throw new ServletException("Servlet Could not update records.", e);
@@ -357,7 +343,6 @@ public class Riscaldamento extends HttpServlet {
 				} 
 				catch (SQLException e) {}
 			}
-			log("DOPOST END: ReInvoco la pagina riscaldamento.jsp");
 			request.getRequestDispatcher("/admin/riscaldamento.jsp").forward(request, response);
 		}
 	}
