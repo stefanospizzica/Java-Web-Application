@@ -58,20 +58,28 @@
 		// degli ultimi parametri letti sul database powertemp.rrd e li ritorna allo script stesso
 		//
 			$(document).on("pageshow", "#livedatapage", function() {
+				
 				myInterval = setInterval(function() {
 					$.post("${pageContext.request.contextPath}/Livedata",{azione:"calc"}, function (retval) {
 						var fields = retval.toString().split(",");
-						var elems = fields[1].split("-");
-						$("#textarea-a").text(elems[0]);
-						$("#textarea-b").text(elems[1]);
-						$("#textarea-c").text(elems[2]);
+						if(fields[2]) {
+							$(".ui-header .ui-title").text("Dati in tempo reale (" + fields[2] + ")");
+						}
+						else {
+							var elems = fields[1].split("-");
+							$("#textarea-a").text(elems[0]);
+							$("#textarea-b").text(elems[1]);
+							$("#textarea-c").text(elems[2]);
+							$(".ui-header .ui-title").text("Dati in tempo reale (Age: " + elems[3] + "s)");
+						}
 					})
-				}, 5000);  
+				}, 5000);  //Aggiorna ogni 5 secondi i parametri live								
 			});
 
 			$(document).on("pagehide", "#livedatapage", function() {
 				clearInterval(myInterval); 		
 			});
+			
 		</script>
 		
 		<div data-role="footer" data-theme="b" class="ui-grid-a">

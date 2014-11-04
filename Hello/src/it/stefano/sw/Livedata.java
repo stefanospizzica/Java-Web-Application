@@ -43,7 +43,6 @@ public class Livedata extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String [] rrdtoolreport = new String[6];
-		log("Chiamata doPost in Livedata");
 		response.setContentType("application/json");
 	    PrintWriter out = response.getWriter();
 	    
@@ -56,20 +55,25 @@ public class Livedata extends HttpServlet {
 			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 			while ((resp = stdError.readLine()) != null) {
 				rrdtoolreport[0] = resp; 
-				log(rrdtoolreport[0]);
 			}
 			BufferedReader stdOut = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((resp = stdOut.readLine()) != null) {
 				rrdtoolreport[1] = resp;
-				log(rrdtoolreport[1]);
 			}
 			p.destroy();
+			//
+			// rrdtoolreport[1] contiene la stringa restituira dal comando rrdtool last update nel formato:
+			// datetime: watt temp
+			// Viene aggiunta l'ora attuale in fondo al report per poter calcolare l'eta dei dati
+			//
+			long unixcurrenttimestamp = System.currentTimeMillis()/1000;		
+			rrdtoolreport[1] += (" " + Long.toString(unixcurrenttimestamp));
+			
+			formatCC128data(rrdtoolreport);
+			
 		} catch(Exception e) {
 			rrdtoolreport[2]=e.toString();
-			log(rrdtoolreport[2]);
 		}
-		
-		formatCC128data(rrdtoolreport);
 		
 		Gson rrdtoolreportjson = new Gson();
 		out.write(rrdtoolreportjson.toJson(rrdtoolreport));
@@ -77,10 +81,12 @@ public class Livedata extends HttpServlet {
 	
 	private void formatCC128data(String report[]) {
 		String fields[] = report[1].split(" ");
-		fields[0] = new java.util.Date((long)Long.parseLong(fields[0].substring(0, fields[0].length()-1))*1000).toString();
+		String subfields0 = fields[0].substring(0, fields[0].length()-1);
+		
+		fields[0] = new java.util.Date((long)Long.parseLong(subfields0)*1000).toString();
 		fields[1] = String.valueOf(Integer.parseInt(fields[1]));
 		fields[2] = String.valueOf(Float.parseFloat(fields[2]));
-		report[1] = fields[0] + "-" + fields[1] + "-" + fields[2];
+		fields[3] = String.valueOf(Long.parseLong(fields[3]) - Long.parseLong(subfields0));
+		report[1] = fields[0] + "-" + fields[1] + "-" + fields[2] + "-" + fields[3];
 	}
-
 }
