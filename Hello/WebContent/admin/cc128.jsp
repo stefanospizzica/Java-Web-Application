@@ -20,7 +20,7 @@
 		try {
 			String s = null;
 			Runtime r =Runtime.getRuntime();
-			String cmd = "sudo /home/pi/create-graphi-param.sh 800 600";
+			String cmd = "sudo /home/pi/create-graph-param.sh 800 600";
 			Process p = r.exec(cmd);
 			p.waitFor();
 			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
