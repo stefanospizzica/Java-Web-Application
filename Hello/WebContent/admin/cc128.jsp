@@ -39,7 +39,7 @@
 			<h1>Grafici dei consumi</h1>
 		</div>
 		
-		<div data-role="popup" id="calcpopup">
+		<div data-history="false" data-role="popup" id="calcpopup">
 			<p>Elaborazione grafici in corso</p>
 		</div>
 		
