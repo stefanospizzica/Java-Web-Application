@@ -41,13 +41,13 @@
 			</div>
 			
 			<div data-role="fieldcontain">
-				<label for="textarea-a">Consumo istantaneo W </label>
+				<label for="textarea-b">Consumo istantaneo W </label>
 				<textarea class="auto-text-area" name="textarea" id="textarea-b">
 				</textarea>
 			</div>
 		
 			<div data-role="fieldcontain">
-				<label for="textarea-a">Temperatura istantanea °C </label>
+				<label for="textarea-c">Temperatura istantanea °C </label>
 				<textarea class="auto-text-area" name="textarea" id="textarea-c">
 				</textarea>
 			</div>
@@ -67,9 +67,9 @@
 						}
 						else {
 							var elems = fields[1].split("-");
-							$("#textarea-a").text(elems[0]);
-							$("#textarea-b").text(elems[1]);
-							$("#textarea-c").text(elems[2]);
+							$("#textarea-a").text(elems[0]);	// Data di acquisizione
+							$("#textarea-b").text(elems[1]);	// Consumo istantaneo
+							$("#textarea-c").text(elems[2]);	// Temperatura istantanea
 							$(".ui-header .ui-title").text("Dati in tempo reale (Age: " + elems[3] + "s)");
 						}
 					})
