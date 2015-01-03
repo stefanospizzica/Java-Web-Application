@@ -305,7 +305,7 @@ public class Riscaldamento extends HttpServlet {
 			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				con =DriverManager.getConnection ("jdbc:mysql://stesim.no-ip.org:3306/cronotermostato","stefano","spo1460simo");
+				con =DriverManager.getConnection ("jdbc:mysql://192.168.1.9:3306/cronotermostato","stefano","spo1460simo");
 				ps = con.prepareStatement("UPDATE Cronotermo SET Stato=?,Tmin=?,Tmax=?,Tsafe=?,Hyst=?,Start1=?,End1=?,Start2=?,End2=?,Start3=?,End3=?,Start4=?,End4=? WHERE	Giorno=?");
 				ps.setString(1,statocronotermostato);
 				ps.setFloat(2,temperaturaminima);
